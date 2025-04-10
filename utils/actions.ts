@@ -5,6 +5,7 @@ import {
   profileSchema,
   validateWithZodSchema,
   propertySchema,
+  createReviewShema,
 } from "./shemas";
 import db from "./db";
 import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
@@ -284,10 +285,58 @@ export const fetchFavorites = async () => {
 export const fetchPropertyDetails = async (id: string) => {
   return await db.property.findUnique({
     where: {
-      id:id
+      id: id,
     },
     include: {
-      profile: true
-    }
-  })
-}
+      profile: true,
+    },
+  });
+};
+
+export const createReviewAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  const user = await getAuthUser();
+  try {
+    const rawData = Object.fromEntries(formData);
+    const validatedFields = validateWithZodSchema(createReviewShema, rawData);
+    await db.review.create({
+      data: {
+        ...validatedFields,
+        profileId: user.id,
+      },
+    });
+    revalidatePath(`/properties/${validatedFields.propertyId}`);
+    return { message: "Review submittes successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
+};
+
+export const fetchPropertyReviews = async (propertyId: string) => {
+  const reviews = await db.review.findMany({
+    where: {
+      propertyId,
+    },
+    select: {
+      id: true,
+      rating: true,
+      comment: true,
+      profile: {
+        select: {
+          firstName: true,
+          profilImage: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return reviews;
+};
+
+export const deleteReviewAction = async () => {
+  return { message: "delete reviews" };
+};

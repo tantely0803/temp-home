@@ -5,7 +5,6 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
 
-
 export default function NavSearch() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -22,6 +21,7 @@ export default function NavSearch() {
     } else {
       params.delete("search");
     }
+    // in vercel replace(`${pathname}?${params.toString()}`);
     replace(`${pathname}?${params.toString()}`);
   }, 500);
 

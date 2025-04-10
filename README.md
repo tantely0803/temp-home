@@ -53,5 +53,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npx shadcn@latest add skeleton
 - npm i use-debounce
 - npm i react-sharenpm install react react-dom leaflet react-leaflet 
-- 
 - npm install -D @types/leaflet
+- deploy vercel  "build": "next build" => "build": "npx prisma generate && next build",
