@@ -15,7 +15,7 @@ model Profile {
   lastName String
   userName String
   email String
-  profilImage String
+  profileImage String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   

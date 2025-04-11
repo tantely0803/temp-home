@@ -1,5 +1,39 @@
-export default function ReviewCard() {
-    return (
-        <div></div>
-    );
+import { Card, CardContent, CardHeader } from "../ui/card";
+import Rating from "./Rating";
+import Comment from "./Comment";
+
+type ReviewCardProps = {
+  reviewInfo: {
+    comment: string;
+    rating: number;
+    name: string;
+    image: string;
+  };
+  children?: React.ReactNode;
+};
+
+export default function ReviewCard({ reviewInfo, children }: ReviewCardProps) {
+  return (
+    <Card className="relative">
+      <CardHeader>
+        <div className="flex items-center">
+          <img
+            src={reviewInfo.image}
+            alt="profile"
+            className="w-12 h-12 rounded-full object-cover"
+          />
+        </div>
+        <div className="ml-4">
+          <h3 className="text-sm font-bold capitalize mb-1">
+            {reviewInfo.name}
+          </h3>
+          <Rating rating={reviewInfo.rating} />
+        </div>
+      </CardHeader>
+      <CardContent>
+        <Comment comment={reviewInfo.comment} />
+      </CardContent>
+      <div className="absolute top-3 right-3">{children}</div>
+    </Card>
+  );
 }

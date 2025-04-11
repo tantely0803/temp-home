@@ -14,7 +14,15 @@ export default async function PropertyReviews({
       <Title text="Reviews" />
       <div className="grid md:grid-cols-2 gap-8 mt-4">
         {reviews.map((review) => {
-          return <ReviewCard />;
+          const { comment, rating } = review;
+          const { firstName, profileImage } = review.profile;
+          const reviewInfo = {
+            comment,
+            rating,
+            name: firstName,
+            image: profileImage,
+          };
+          return <ReviewCard key={review.id} reviewInfo={reviewInfo} />;
         })}
       </div>
     </div>
