@@ -16,7 +16,7 @@ export default async function ProfilePage() {
       <h1 className="text-2xl font-semibold mb-8 capitalize">User profile</h1>
       <div className="border p-8 rounded-md">
         <ImageInputContainer
-          image={profile.profilImage}
+          image={profile.profileImage}
           name={profile.userName}
           action={updateProfileImageAction}
           text="Update Profile Image"
