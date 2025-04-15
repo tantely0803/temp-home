@@ -36,7 +36,7 @@ export default function CreatePropertyPage() {
             <CategoriesInput />
           </div>
           <TextAreaInput
-            name="descritpion"
+            name="description"
             labelText="Description( 10 - 1000 word )"
           />
           <div className="grid sm:grid-cols-2 gap-8 mt-4">

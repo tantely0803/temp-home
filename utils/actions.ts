@@ -152,35 +152,34 @@ export const createPropertyAction = async (
     const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
 
-    const validatedFields = validateWithZodSchema(imageSchema, { image: file });
-    const validateFields = validateWithZodSchema(propertySchema, rawData);
+    const validatedImageFields = validateWithZodSchema(imageSchema, { image: file });
+    const validatedFields = validateWithZodSchema(propertySchema, rawData);
 
-    const fullPath = await uploadImage(validatedFields.image);
+    const fullPath = await uploadImage(validatedImageFields.image);
 
     await db.property.create({
       data: {
-        name: validateFields.name,
-        tagline: validateFields.tagline,
-        category: validateFields.category,
+        name: validatedFields.name,
+        tagline: validatedFields.tagline,
+        category: validatedFields.category,
         image: fullPath,
-        country: validateFields.country,
-        description: validateFields.description,
-        price: validateFields.price,
-        guests: validateFields.guests,
-        bedrooms: validateFields.bedrooms,
-        beds: validateFields.beds,
-        baths: validateFields.baths,
-        amenities: validateFields.aminities,
+        country: validatedFields.country,
+        description: validatedFields.description,
+        price: validatedFields.price,
+        guests: validatedFields.guests,
+        bedrooms: validatedFields.bedrooms,
+        beds: validatedFields.beds,
+        baths: validatedFields.baths,
+        amenities: validatedFields.amenities,
         profileId: user.id,
       },
     });
 
     //return { message: "property created" };
+     redirect("/");
   } catch (error) {
     return renderError(error);
   }
-
-  redirect("/");
 };
 
 export const fetchProperties = async ({
