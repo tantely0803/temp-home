@@ -11,19 +11,10 @@ import UserInfo from "@/components/properties/UserInfo";
 import { Separator } from "@/components/ui/separator";
 import Descrition from "@/components/properties/Description";
 import Amenities from "@/components/properties/Amenities";
-import dynamic from "next/dynamic";
-import { Skeleton } from "@/components/ui/skeleton";
+import DynamicMap from "@/components/properties/DynamicMap";
 import SubmitReview from "@/components/reviews/SubmitReview";
 import PropertyReviews from "@/components/reviews/PropertyReviews";
 import { auth } from "@clerk/nextjs/server";
-
-const DynamicMap = dynamic(
-  () => import("@/components/properties/PropertyMap"),
-  {
-    ssr: false,
-    loading: () => <Skeleton className="h-[400px] w-full" />,
-  }
-);
 
 export default async function PropertiesDetailsPage({
   params,
@@ -65,7 +56,7 @@ export default async function PropertiesDetailsPage({
           <Separator className="mt-4" />
           <Descrition descrition={property.description} />
           <Amenities amenities={property.amenities} />
-          <DynamicMap countryCode={property.country} />
+          <DynamicMap country={property.country} />
         </div>
         <div className="lg:col-span-4 flex flex-col items-center">
           <BookingCalendar />
