@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         //copy url error here
-        hostname: "",
+        hostname: "ewfjjgwyizfqqcmmhrym.supabase.co",
       },
     ],
   },

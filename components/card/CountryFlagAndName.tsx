@@ -13,7 +13,12 @@ export default function CountryFlagAndName({
       : validCountry?.name;
   return (
     <span className="flex justify-between items-center gap-2 text-sm">
-      {validCountry.flag} {countryName}
+      <img
+        src={validCountry.urlflag}
+        alt={validCountry.name}
+        className="w-6 h-4"
+      />{" "}
+      {countryName}
     </span>
   );
 }

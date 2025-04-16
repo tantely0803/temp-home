@@ -152,7 +152,9 @@ export const createPropertyAction = async (
     const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
 
-    const validatedImageFields = validateWithZodSchema(imageSchema, { image: file });
+    const validatedImageFields = validateWithZodSchema(imageSchema, {
+      image: file,
+    });
     const validatedFields = validateWithZodSchema(propertySchema, rawData);
 
     const fullPath = await uploadImage(validatedImageFields.image);
@@ -176,7 +178,7 @@ export const createPropertyAction = async (
     });
 
     //return { message: "property created" };
-     redirect("/");
+    redirect("/");
   } catch (error) {
     return renderError(error);
   }
@@ -204,6 +206,7 @@ export const fetchProperties = async ({
       country: true,
       price: true,
       image: true,
+      description: true,
     },
     orderBy: {
       createdAt: "desc",

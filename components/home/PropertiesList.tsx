@@ -5,7 +5,7 @@ export default function PropertiesList({
   properties,
 }: {
   properties: PropertyCardprops[];
-}) {
+  }) {
   return (
     <section className="mt-4 gap-8 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {properties.map((property) => {
