@@ -12,8 +12,8 @@ import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
-import { truncate } from "fs";
-import Rating from "@/components/reviews/Rating";
+//import { truncate } from "fs";
+//import Rating from "@/components/reviews/Rating";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -178,10 +178,10 @@ export const createPropertyAction = async (
     });
 
     //return { message: "property created" };
-    redirect("/");
   } catch (error) {
     return renderError(error);
   }
+   redirect("/");
 };
 
 export const fetchProperties = async ({
