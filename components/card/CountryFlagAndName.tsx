@@ -12,7 +12,7 @@ export default function CountryFlagAndName({
       ? `${validCountry?.name.substring(0, 20)}...`
       : validCountry?.name;
   return (
-    <span className="flex justify-between items-center gap-2 text-sm">
+    <span className="flex items-center gap-2">
       <img
         src={validCountry.urlflag}
         alt={validCountry.name}

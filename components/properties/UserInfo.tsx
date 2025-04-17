@@ -23,7 +23,7 @@ export default function UserInfo({
         <p>
           Hosted by <span className="font-bold">{firstName}</span>{" "}
         </p>
-        <p className="text-muted-foreground font-light">Superhost &middot;</p>
+        <p className="text-muted-foreground font-light">Superhost &middot; 2 years hosting</p>
       </div>
     </article>
   );
