@@ -20,8 +20,9 @@ export default async function PropertiesDetailsPage({
   params,
 }: {
   params: { id: string };
-}) {
-  const property = await fetchPropertyDetails(params.id);
+  }) {
+  const { id } = await params;
+  const property = await fetchPropertyDetails(id);
   if (!property) redirect("/");
 
   const { baths, bedrooms, beds, guests } = property;
