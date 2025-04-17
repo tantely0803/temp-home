@@ -37,7 +37,7 @@ export default function PropertyCard({
         </p>
         <div className="flex justify-between items-center mt-1">
           <p className="text-sm mt-1">
-            <span className="font-semibold">{formatCurrency(price)}</span>
+            <span className="font-semibold">{formatCurrency(price)} </span>
             night
           </p>
           <CountryFlagAndName countryCode={country} />

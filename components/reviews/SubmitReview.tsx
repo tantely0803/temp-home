@@ -19,7 +19,7 @@ export default function SubmitReview({ propertyId }: { propertyId: string }) {
       {isReviewFormVisible && (
         <Card className="p-8 mt-8">
           <FormContainer action={createReviewAction}>
-            <input type="hidden" name="propertyId" />
+            <input type="hidden" name="propertyId"   value={propertyId}/>
             <RatingInput name="rating" labelText="rating" />
             <TextAreaInput
               name="comment"

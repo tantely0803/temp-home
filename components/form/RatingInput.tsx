@@ -15,7 +15,7 @@ export default function RatingInput({
   labelText: string;
 }) {
   const numbers = Array.from({ length: 5 }, (_, i) => {
-    const value = 1 + 1;
+    const value = i + 1;
     return value.toString();
   });
   return (
