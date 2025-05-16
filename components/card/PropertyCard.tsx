@@ -11,8 +11,8 @@ export default function PropertyCard({
 }: {
   property: PropertyCardprops;
 }) {
-  const { name, image, price } = property;
-  const { country, id: propertyId, tagline } = property;
+  const { name, image, price, country, tagline } = property;
+  const { id: propertyId } = property;
 
   return (
     <article className="group relative">

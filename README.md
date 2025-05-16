@@ -40,7 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - installation all components/ui used shadcn
 - installation react-icon
 - installation clerk ( for authentification )
-- use sonner instead of taost
+- use sonner instead of toast
 - use Loader2 instead of ReactLoader from spinnging button
 - installation zod library
 - installation SupaBase
@@ -55,3 +55,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npm i react-sharenpm install react react-dom leaflet react-leaflet 
 - npm install -D @types/leaflet
 - deploy vercel  "build": "next build" => "build": "npx prisma generate && next build",
+- npm install  zustand --force 
+- npm install recharts --force
+- npm install --save @stripe/react-stripe-js @stripe/stripe-js stripe axios --force
