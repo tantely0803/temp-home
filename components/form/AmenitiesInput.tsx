@@ -31,6 +31,7 @@ export default function AmenitiesInput({
       });
     });
   };
+
   return (
     <section>
       <input

@@ -16,7 +16,7 @@ function FormRow({ label, amount }: { label: string; amount: number }) {
 export default function BookingForm() {
   const { range, price } = useProperty((state) => state);
   const checkIn = range?.from as Date;
-  const checkOut = range?.from as Date;
+  const checkOut = range?.to as Date;
   const { totalNights, subTotal, cleaning, service, tax, orderTotal } =
     calculateTotals({ checkIn, checkOut, price });
 

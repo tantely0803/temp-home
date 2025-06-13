@@ -16,6 +16,8 @@ import Stats from "@/components/reservations/stats";
 
 export default async function ReservationsPage() {
   const reservations = await fetchReservations();
+  console.log("Reservations:", reservations);
+  
   if (reservations.length === 0) return <EmptyList />;
 
   return (

@@ -44,7 +44,7 @@ export default async function BookingPage() {
             const startDate = formatDate(checkIn);
             const endDate = formatDate(checkOut);
             return (
-              <TableRow>
+              <TableRow key={id}>
                 <TableCell>
                   <Link
                     href={`/properties/${propertyId}`}

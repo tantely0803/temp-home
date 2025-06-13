@@ -23,6 +23,8 @@ export default function BookingCalendar() {
     today: currentDate,
   });
 
+  console.log("Blocked periods:", blockedPeriods);
+
   const unvailableDates = generateDisabledDates(blockedPeriods);
 
   useEffect(() => {

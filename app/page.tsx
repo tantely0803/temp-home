@@ -9,6 +9,7 @@ export default async function HomePage({
   searchParams: { category?: string; search?: string };
   }) {
   const searchParamsResult =  await searchParams;
+  console.log(searchParamsResult);
   return (
     <section>
       <CategoriesList

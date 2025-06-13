@@ -28,7 +28,9 @@ export default function CheckoutPage() {
 
   return (
     <div id="checkout">
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options} />
+      <EmbeddedCheckoutProvider stripe={stripePromise} options={options} >
+        <EmbeddedCheckout />
+      </EmbeddedCheckoutProvider>
     </div>
   );
 }

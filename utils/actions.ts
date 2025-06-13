@@ -45,7 +45,7 @@ const renderError = (error: unknown): { message: string } => {
 export const createProfileAction = async (
   prevState: any,
   formData: FormData
-) => {
+): Promise<{ message: string }> => {
   try {
     const user = await currentUser();
     if (!user) throw new Error("Please login to create e profile");
@@ -301,7 +301,7 @@ export const toogleFavoriteAction = async (prevState: {
   propertyId: string;
   favoriteId: string | null;
   pathname: string;
-}) => {
+}): Promise<{ message: string }> => {
   const user = await getAuthUser();
   const { propertyId, favoriteId, pathname } = prevState;
 
@@ -369,7 +369,7 @@ export const fetchPropertyDetails = async (id: string) => {
 export const createReviewAction = async (
   prevState: any,
   formData: FormData
-) => {
+): Promise<{ message: string }> => {
   const user = await getAuthUser();
   try {
     const rawData = Object.fromEntries(formData);
@@ -431,7 +431,9 @@ export const fetchPropertyReviewsByUser = async () => {
   return reviews;
 };
 
-export const deleteReviewAction = async (prevState: { reviewId: string }) => {
+export const deleteReviewAction = async (prevState: {
+  reviewId: string;
+}): Promise<{ message: string }> => {
   const { reviewId } = prevState;
   const user = await getAuthUser();
   try {
@@ -484,12 +486,12 @@ export const createBookingAction = async (prevState: {
   propertyId: string;
   checkIn: Date;
   checkOut: Date;
-}) => {
+}): Promise<{ message: string }> => {
   const user = await getAuthUser();
   await db.booking.deleteMany({
     where: {
       profileId: user.id,
-      paymentStatus: false,
+      paymentStatus: false, // delete all unpaid bookings
     },
   });
 
@@ -525,7 +527,7 @@ export const createBookingAction = async (prevState: {
   } catch (error) {
     return renderError(error);
   }
-  redirect(`/bookings?bookingId=${bookingId}`);
+  redirect(`/checkout?bookingId=${bookingId}`);
 };
 
 export const fetchBookings = async () => {
@@ -534,7 +536,7 @@ export const fetchBookings = async () => {
   const bookings = await db.booking.findMany({
     where: {
       profileId: user.id,
-      paymentStatus: true,
+      paymentStatus: false, // ckeck if the booking is paid
     },
     include: {
       proprety: {
@@ -552,7 +554,9 @@ export const fetchBookings = async () => {
   return bookings;
 };
 
-export const deleteBookingAction = async (prevState: { bookingId: string }) => {
+export const deleteBookingAction = async (prevState: {
+  bookingId: string;
+}): Promise<{ message: string }> => {
   const { bookingId } = prevState;
   const user = await getAuthUser();
   try {
@@ -582,7 +586,7 @@ export const fetchRentals = async () => {
     },
   });
 
-  const rentalWithBookingsSums = await await Promise.all(
+  const rentalWithBookingsSums = await Promise.all(
     rentals.map(async (rental) => {
       const totalNightSum = await db.booking.aggregate({
         where: {
@@ -611,7 +615,9 @@ export const fetchRentals = async () => {
   return rentalWithBookingsSums;
 };
 
-export const deleteRentalAction = async (prevState: { propertyId: string }) => {
+export const deleteRentalAction = async (prevState: {
+  propertyId: string;
+}): Promise<{ message: string }> => {
   const { propertyId } = prevState;
   const user = await getAuthUser();
   try {
@@ -644,9 +650,7 @@ export const fetchReservations = async () => {
   const reservations = await db.booking.findMany({
     where: {
       paymentStatus: true,
-      proprety: {
-        profileId: user.id,
-      },
+      profileId: user.id,
     },
     orderBy: {
       createdAt: "desc",
@@ -715,9 +719,9 @@ export const fetchChartsData = async () => {
 export const fetchReservationsStats = async () => {
   const user = await getAuthUser();
 
-  const propreties = await db.profile.count({
+  const propreties = await db.property.count({
     where: {
-      clerkId: user.id,
+      profileId: user.id,
     },
   });
 

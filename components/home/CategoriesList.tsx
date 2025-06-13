@@ -23,7 +23,9 @@ export default function CategoriesList({
                 href={`/?category=${item.label}${searchTeam}`}
               >
                 <article
-                  className={`p-3 flex flex-col items-center cursor-pointer duration-300 hover:text-amber-600 w-[100px] ${isActive} ? 'text-primary' : '' `}
+                  className={`p-3 flex flex-col items-center cursor-pointer duration-300 hover:text-amber-600 w-[100px] ${
+                    isActive ? "text-primary" : ""
+                  }`}
                 >
                   <item.icon className="w-8 h-8" />
                   <p className="capitalize text-sm mt-1">{item.label}</p>

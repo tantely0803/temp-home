@@ -24,6 +24,7 @@ export default function ImageInputContainer(props: ImageInputContainerProps) {
   const userIcon = (
     <LuUser className="w-24 h-24 bg-primary rounded text-white mb-4" />
   );
+
   return (
     <div>
       {image ? (

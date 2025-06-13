@@ -2,7 +2,7 @@
 
 import { useProperty } from "@/utils/store";
 import { SignInButton, useAuth } from "@clerk/nextjs";
-import { Button } from "react-day-picker";
+//import { Button } from "react-day-picker";
 import FormContainer from "../form/FormContainer";
 import SubmitButton from "../form/Buttons";
 import { createBookingAction } from "@/utils/actions";
@@ -16,9 +16,9 @@ export default function ConfirmBooking() {
   if (!userId) {
     return (
       <SignInButton mode="modal">
-        <Button type="button" className="w-full">
-          Sign In to Cpmplte Booking
-        </Button>
+        {/* <Button type="button" className="w-full"> */}
+          Sign In to Complete Booking
+        {/* </Button> */}
       </SignInButton>
     );
   }
